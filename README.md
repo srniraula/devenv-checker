@@ -11,11 +11,11 @@ python devcheck.py --fix
 ```
 
 # Tools checked
-Docker
-Git
-kubectl
-Terraform
-Ansible
+Docker\n
+Git\n
+kubectl\n
+Terraform\n
+Ansible\n
 
 # Requirements
 - Python 3.6+
@@ -29,7 +29,7 @@ python devcheck.py
 ```
 
 # File structure in the repo
-devenv-checker/
-├── devcheck.py
-└── README.md
+devenv-checker/\n
+├── devcheck.py\n
+└── README.md\n
 
