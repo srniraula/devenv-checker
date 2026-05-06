@@ -1,6 +1,7 @@
 import subprocess
 import argparse
 import re
+import json
 
 INSTALL_INSTRUCTIONS = {
     'docker': 'sudo apt install docker.io',
@@ -49,9 +50,9 @@ def check_tool():
 outputList, uninstalledTools = check_tool()
     
 
-
 parser = argparse.ArgumentParser()
 parser.add_argument('--fix', action='store_true', help='Apply fixes')
+parser.add_argument('--report', action='store_true', help='Generate report of checks')
 args = parser.parse_args()
 
 print("Checking your DevOps Environment....\n")
@@ -64,5 +65,13 @@ else:
         print("[{0}]   {1}      {2}".format(item['status'],item['name'],item['version']))
     print(f"{len(uninstalledTools)} {"issues" if len(uninstalledTools)>1 else "issue"} found. Run with --fix to see install instructions.")
 
-
+if args.report:
+    report_dict={}
+    for itemInfo in outputList:
+        report_dict[itemInfo['name']] = {
+            'status': itemInfo['status'],
+            'version': itemInfo['version']
+        }
+    with open('report.json', 'w') as f:
+        json.dump(report_dict,f,indent=4)
 
