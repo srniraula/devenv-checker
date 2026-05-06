@@ -2,6 +2,8 @@ import subprocess
 import argparse
 import re
 import json
+import datetime
+import os
 
 INSTALL_INSTRUCTIONS = {
     'docker': 'sudo apt install docker.io',
@@ -72,6 +74,9 @@ if args.report:
             'status': itemInfo['status'],
             'version': itemInfo['version']
         }
+    report_dict['generated_at'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     with open('report.json', 'w') as f:
         json.dump(report_dict,f,indent=4)
+
+    print(f"Report saved at {os.path.abspath('report.json')}")
 
