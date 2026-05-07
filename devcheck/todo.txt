@@ -1,0 +1,3 @@
+Add more tools status checker
+improve readability and fix how to install tools completely. 
+and more.

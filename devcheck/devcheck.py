@@ -4,6 +4,7 @@ import re
 import json
 import datetime
 import os
+from pymongo import MongoClient
 
 INSTALL_INSTRUCTIONS = {
     'docker': 'sudo apt install docker.io',
@@ -55,6 +56,7 @@ outputList, uninstalledTools = check_tool()
 parser = argparse.ArgumentParser()
 parser.add_argument('--fix', action='store_true', help='Apply fixes')
 parser.add_argument('--report', action='store_true', help='Generate report of checks')
+parser.add_argument('--save', action='store_true', help="Save output to mongodb")
 args = parser.parse_args()
 
 print("Checking your DevOps Environment....\n")
@@ -80,3 +82,11 @@ if args.report:
 
     print(f"Report saved at {os.path.abspath('report.json')}")
 
+
+
+if args.save:
+    client = MongoClient('mongodb://mongodb:27017/')
+    db = client['devcheck_db'] # database
+    collection = db['devtools_status'] # collection
+
+    collection.insert_many(outputList)

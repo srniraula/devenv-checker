@@ -1,0 +1,41 @@
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    depends_on:
+      - devcheck
+    networks:
+      - frontend_net
+
+  devcheck:
+    build: ./devcheck
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - frontend_net
+      - app_net
+    
+  mongodb:
+    image: mongo:8.3.1
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh","--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - app_net
+
+volumes:
+  mongodb_data:
+
+networks:
+  app_net:
+    driver: bridge
+  frontend_net:
+    driver: bridge

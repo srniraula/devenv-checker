@@ -1,37 +1,13 @@
-# devenv-checker 
-Check your DevOps environment from the terminal.
+I wrote a docker-compose.yml file that creates 3 containers:
 
-# Demo:
-![Demo](images/image.png)
+1. nginx
+2. devcheck
+3. mongodb
 
-# Usage:
+
 ```
-python devcheck.py
-python devcheck.py --fix
+docker compose up
 ```
+It reads docker-compose.yml file and creates all containers, networks, volumes, etc. 
 
-# Tools checked
-- Docker
-- Git
-- kubectl
-- Terraform
-- Ansible
-
-# Requirements
-- Python 3.6+
-- Linux (install instructions are linux-based)
-
-# How to run
-```
-git clone https://github.com/srniraula/devenv-checker
-cd devenv-checker
-python devcheck.py
-```
-
-# File structure in the repo
-```
-devenv-checker/
-├── devcheck.py
-└── README.md
-```
-
+The reason for this is that devcheck container writes its output to mongodb database. Just a practice setup
