@@ -1,0 +1,23 @@
+{
+    "Docker": {
+        "status": "OK",
+        "version": "29.4.2"
+    },
+    "Git": {
+        "status": "OK",
+        "version": "2.43.0"
+    },
+    "kubectl": {
+        "status": "MISSING",
+        "version": "Not installed"
+    },
+    "Terraform": {
+        "status": "MISSING",
+        "version": "Not installed"
+    },
+    "Ansible": {
+        "status": "MISSING",
+        "version": "Not installed"
+    },
+    "generated_at": "2026-05-06 08:35:01"
+}

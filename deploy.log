@@ -1,0 +1,5 @@
+[2026-05-07 15:05:39]  Starting deployment....
+[2026-05-07 15:06:00] MongoDB status: HEALTHY
+[2026-05-07 15:06:00] devcheck status: STARTED
+[2026-05-07 15:06:00] nginx status: STARTED
+--- Deployment complete --- 
